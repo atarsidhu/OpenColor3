@@ -5,21 +5,92 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         tools:context=".MainActivity">
 
 
-    <Button
+    <ImageView
+            android:layout_width="147dp"
+            android:layout_height="141dp" app:srcCompat="@drawable/opencolortransparentlogo"
+            android:id="@+id/imgOC"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" android:contentDescription="@string/app_name"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    <ImageView
+            android:layout_width="338dp"
+            android:layout_height="69dp" app:srcCompat="@drawable/opencolortext"
+            android:id="@+id/imgOpenColor"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.17000002" app:layout_constraintTop_toTopOf="@+id/imgOC"
+            android:contentDescription="@string/app_name" app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+            android:text="@string/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtAuthor" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/imgOC"
+            app:layout_constraintVertical_bias="0.04000002"
+            android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+            android:text="@string/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtTest"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/imgBtnTest"
+            app:layout_constraintEnd_toEndOf="@+id/imgBtnTest" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01999998"
+            app:layout_constraintTop_toBottomOf="@+id/imgBtnTest"
+            android:textSize="12sp"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/camera"
+            android:adjustViewBounds="true"
+            android:maxHeight="100dp"
+            android:maxWidth="100dp"
+            android:id="@+id/imgBtnCamera"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.83" android:contentDescription="@string/camera"
+            app:layout_constraintVertical_bias="0.8" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="@string/choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtPicture" app:layout_constraintStart_toStartOf="@+id/imgBtnCamera"
+            app:layout_constraintEnd_toEndOf="@+id/imgBtnCamera" app:layout_constraintTop_toBottomOf="@+id/imgBtnCamera"
+            app:layout_constraintVertical_bias="0.01999998"
+            android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="12sp"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/test"
+            android:adjustViewBounds="true"
+            android:maxHeight="80dp"
+            android:maxWidth="100dp"
+            android:id="@+id/imgBtnTest"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/test" app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintVertical_bias="0.8" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="@string/or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintVertical_bias="0.78"
+            app:layout_constraintTop_toTopOf="@+id/imgOC"/>
+    <TextView
             android:text="@string/begin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnStartTest" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.74"/>
-    <Button
-            android:text="@string/select_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnCameraPage" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/btnStartTest"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.13"/>
+            android:id="@+id/txtBegin" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/txtAuthor"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.45"
+            android:textSize="22sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

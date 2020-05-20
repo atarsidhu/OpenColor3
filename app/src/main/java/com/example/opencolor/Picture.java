@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -18,13 +17,13 @@ import android.os.Bundle;
 
 public class Picture extends AppCompatActivity {
 
-    Button openCameraBtn;
-    Button choosePictureBtn;
-    ImageView imageView;
+    ImageView openCameraBtn;
+    ImageView choosePictureBtn;
+    ImageView selectedImage;
     private static final int PICTURE_ID = 1;
     private static final int GALLERY_REQUEST_CODE = 2;
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 10;
-    public static Activity pictureActivity;
+    public Activity pictureActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +31,10 @@ public class Picture extends AppCompatActivity {
         setContentView(R.layout.activity_picture);
         pictureActivity = this;
 
-        imageView = findViewById(R.id.imageView);
+        selectedImage = findViewById(R.id.imgSelected);
 
         // Open camera and take a photo
-        openCameraBtn = findViewById(R.id.btnCamera);
+        openCameraBtn = findViewById(R.id.imgBtnOpenCamera);
         openCameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +52,7 @@ public class Picture extends AppCompatActivity {
         });
 
         // Open gallery and choose an image
-        choosePictureBtn = findViewById(R.id.btnChoosePicture);
+        choosePictureBtn = findViewById(R.id.imgBtnGallery);
         choosePictureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,13 +69,13 @@ public class Picture extends AppCompatActivity {
         if (requestCode == PICTURE_ID && resultCode == RESULT_OK && data != null) {
             super.onActivityResult(requestCode, resultCode, data);
             Bitmap photo = (Bitmap) data.getExtras().get("data");
-            imageView.setImageBitmap(photo);
+            selectedImage.setImageBitmap(photo);
         }
 
         // Selecting picture from gallery
         if(requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null){
             Uri photo = data.getData();
-            imageView.setImageURI(photo);
+            selectedImage.setImageURI(photo);
         }
     }
 

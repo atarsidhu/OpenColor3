@@ -14,15 +14,15 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button startTestBtn;
-    Button openCameraBtn;
+    ImageView startTestBtn;
+    ImageView openCameraBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startTestBtn = findViewById(R.id.btnStartTest);
+        startTestBtn = findViewById(R.id.imgBtnTest);
         startTestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        openCameraBtn = findViewById(R.id.btnCameraPage);
+        openCameraBtn = findViewById(R.id.imgBtnCamera);
         openCameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
