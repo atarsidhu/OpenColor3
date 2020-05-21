@@ -60,10 +60,17 @@
             app:layout_constraintTop_toBottomOf="@+id/imgBtnGallery" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.01" android:textStyle="bold" android:textSize="12sp"/>
     <ImageView
-            android:layout_width="345dp"
-            android:layout_height="299dp" app:srcCompat="@drawable/imageplaceholder"
+            android:layout_width="300dp"
+            android:layout_height="307dp" app:srcCompat="@drawable/imageplaceholder"
             android:id="@+id/imgSelected"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.100000024"/>
+    <TextView
+            android:text="some color adjusting tool stuff would be placed in this space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/imgSelected"
+            app:layout_constraintBottom_toTopOf="@+id/imgBtnOpenCamera"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

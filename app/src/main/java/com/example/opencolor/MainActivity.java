@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView startTestBtn;
     ImageView openCameraBtn;
+    ImageView grayscaleImg;
+    ImageView colorImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        grayscaleImg = findViewById(R.id.imgGrayscale);
+        colorImg = findViewById(R.id.imgColor);
+        
+        Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fadeout);
+        grayscaleImg.startAnimation(fadeOut);
+        
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        colorImg.startAnimation(fadeIn);
+        
     }
 
 }
