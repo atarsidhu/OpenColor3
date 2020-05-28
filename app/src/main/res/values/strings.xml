@@ -11,4 +11,9 @@
     <string name="choose">Choose An Image</string>
     <string name="or">Or</string>
 
+    <!-- Test Page -->
+    <string name="choose_number">What Number Do You See?</string>
+    <string name="next">Next</string>
+    <string name="not_sure">Not Sure</string>
+    <string name="finish">Finish</string>
 </resources>

@@ -67,7 +67,7 @@
     <ImageView
             android:layout_width="67dp"
             android:layout_height="75dp"
-            app:srcCompat="@drawable/test"
+            app:srcCompat="@drawable/testicon"
             android:adjustViewBounds="true"
             android:maxHeight="80dp"
             android:maxWidth="100dp"
