@@ -11,7 +11,7 @@ import android.os.Bundle;
 
 import java.util.Arrays;
 
-public class Test extends AppCompatActivity {
+public class ColorBlindTest extends AppCompatActivity {
 
     ImageView test;
     EditText answer;
@@ -40,7 +40,7 @@ public class Test extends AppCompatActivity {
             public void onClick(View v) {
                 // If no answer given
                 if(answer.getText().toString().equals(""))
-                    Toast.makeText(Test.this, "Please enter a value or select 'Not Sure' to continue", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ColorBlindTest.this, "Please enter a value or select 'Not Sure' to continue", Toast.LENGTH_SHORT).show();
                 else{
                     // Store answer and increase count
                     answerArr[count] = Integer.parseInt(answer.getText().toString());
@@ -71,7 +71,7 @@ public class Test extends AppCompatActivity {
     }
 
     public void passResults(String res){
-        Intent startIntent = new Intent(Test.this, Results.class);
+        Intent startIntent = new Intent(ColorBlindTest.this, Results.class);
         startIntent.putExtra("RESULTS", res);
         startActivity(startIntent);
     }

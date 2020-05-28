@@ -4,14 +4,15 @@
     <string name="author">By: ColorCoded</string>
 
     <string name="begin">Choose an Option Below to Start</string>
-
     <string name="test">Begin Test</string>
-    <string name="camera">Take A Picture</string>
-    <string name="select">Select An Existing Image</string>
     <string name="choose">Choose An Image</string>
     <string name="or">Or</string>
 
-    <!-- Test Page -->
+    <!-- Picture Page -->
+    <string name="camera">Take A Picture</string>
+    <string name="select">Select An Existing Image</string>
+
+    <!-- ColorBlindTest Page -->
     <string name="choose_number">What Number Do You See?</string>
     <string name="next">Next</string>
     <string name="not_sure">Not Sure</string>

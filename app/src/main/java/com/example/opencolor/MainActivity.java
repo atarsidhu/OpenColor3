@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         startTestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), Test.class);
+                Intent startIntent = new Intent(getApplicationContext(), ColorBlindTest.class);
                 startActivity(startIntent);
             }
         });
