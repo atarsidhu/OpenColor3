@@ -2,7 +2,7 @@ import cv2
 from wand.image import Image
 #from wand.display import display
 #import numpy as np
-from matplotlib import pyplot as plt
+#from matplotlib import pyplot as plt
 #cv2.__version__
 
 """
