@@ -6,14 +6,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import android.os.Bundle;
 
 public class Picture extends AppCompatActivity {
 
@@ -35,6 +35,7 @@ public class Picture extends AppCompatActivity {
 
         // Open camera and take a photo
         openCameraBtn = findViewById(R.id.imgBtnOpenCamera);
+
         openCameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +64,11 @@ public class Picture extends AppCompatActivity {
             }
         });
     }
+
+    public void onClick(View v){
+
+    }
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Taking picture from camera
