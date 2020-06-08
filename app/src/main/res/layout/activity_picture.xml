@@ -73,4 +73,20 @@
             android:id="@+id/textView2" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/imgSelected"
             app:layout_constraintBottom_toTopOf="@+id/imgBtnOpenCamera"/>
+
+    <Button
+        android:id="@+id/processImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="139dp"
+        android:layout_marginLeft="139dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginRight="140dp"
+        android:layout_marginBottom="19dp"
+        android:text="Process Image"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSelected" />
 </androidx.constraintlayout.widget.ConstraintLayout>

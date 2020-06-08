@@ -1,13 +1,14 @@
 package com.example.opencolor;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 
 import java.util.Arrays;
 
@@ -32,7 +33,9 @@ public class ColorBlindTest extends AppCompatActivity {
         answer = findViewById(R.id.etAnswer1);
         btnNext = findViewById(R.id.btnNext);
         btnNotSure = findViewById(R.id.btnNotSure);
-        imageArr = new int[]{R.drawable.test1, R.drawable.test2, R.drawable.test3};
+
+        //Load test images in a Unit Testable way
+        imageArr = setupTestImages();
         answerArr = new int[imageArr.length];
 
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +85,14 @@ public class ColorBlindTest extends AppCompatActivity {
 
         if(count == imageArr.length -1)
             btnNext.setText(R.string.finish);
+    }
+
+    public int[] setupTestImages(){
+        int[] images = new int[3];
+        images[0] = R.drawable.test1;
+        images[1] = R.drawable.test2;
+        images[2] = R.drawable.test3;
+        return images;
     }
 
 }

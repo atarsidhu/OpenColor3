@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,10 +21,14 @@ public class Picture extends AppCompatActivity {
     ImageView openCameraBtn;
     ImageView choosePictureBtn;
     ImageView selectedImage;
+    Button processImage;
     private static final int PICTURE_ID = 1;
     private static final int GALLERY_REQUEST_CODE = 2;
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 10;
     public Activity pictureActivity;
+    public View.OnClickListener processImageClicked;
+    public View.OnClickListener cameraClicked;
+    public View.OnClickListener chooseClicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +36,32 @@ public class Picture extends AppCompatActivity {
         setContentView(R.layout.activity_picture);
         pictureActivity = this;
 
+        associateResources();
+        createListeners();
+        setListeners();
+
+
+    }
+
+    public boolean associateResources(){
         selectedImage = findViewById(R.id.imgSelected);
-
-        // Open camera and take a photo
+        processImage = findViewById(R.id.processImage);
         openCameraBtn = findViewById(R.id.imgBtnOpenCamera);
+        choosePictureBtn = findViewById(R.id.imgBtnGallery);
+        return true;
+    }
 
-        openCameraBtn.setOnClickListener(new View.OnClickListener() {
+    public boolean createListeners(){
+        processImageClicked = new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
+                selectedImage.setImageResource(R.drawable.imageplaceholder);
+            }
+        };
+
+        cameraClicked = new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
                 Intent startIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (startIntent.resolveActivity(getPackageManager()) != null) {
                     if (ContextCompat.checkSelfPermission(pictureActivity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
@@ -50,11 +73,9 @@ public class Picture extends AppCompatActivity {
                     }
                 }
             }
-        });
+        };
 
-        // Open gallery and choose an image
-        choosePictureBtn = findViewById(R.id.imgBtnGallery);
-        choosePictureBtn.setOnClickListener(new View.OnClickListener() {
+        chooseClicked = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent();
@@ -62,13 +83,17 @@ public class Picture extends AppCompatActivity {
                 startIntent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(startIntent, "Pick an image"), GALLERY_REQUEST_CODE);
             }
-        });
+        };
+
+        return true;
     }
 
-    public void onClick(View v){
-
+    public boolean setListeners(){
+        processImage.setOnClickListener(processImageClicked);
+        openCameraBtn.setOnClickListener(cameraClicked);
+        choosePictureBtn.setOnClickListener(chooseClicked);
+        return true;
     }
-
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Taking picture from camera
