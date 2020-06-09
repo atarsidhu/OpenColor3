@@ -23,9 +23,9 @@ public class MainUnitTests {
         ColorBlindTest test = new ColorBlindTest();
         int[] images = test.setupTestImages();
         assertEquals(3, images.length);
-        assertEquals(images[0], R.drawable.test1);
-        assertEquals(images[1], R.drawable.test2);
-        assertEquals(images[2], R.drawable.test3);
+        assertEquals(images[0], R.drawable.colorblindtest01);
+        assertEquals(images[1], R.drawable.colorblindtest02);
+        assertEquals(images[2], R.drawable.colorblindtest03);
     }
 
     //Testing the picture display page
