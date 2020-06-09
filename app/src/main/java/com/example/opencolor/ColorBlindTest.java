@@ -1,6 +1,9 @@
 package com.example.opencolor;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +21,8 @@ public class ColorBlindTest extends AppCompatActivity {
     EditText answer;
     Button btnNext;
     Button btnNotSure;
+    Button btnBeginTest;
+    Dialog popupInfo;
 
     int[] answerArr;
     int[] imageArr;
@@ -38,6 +43,8 @@ public class ColorBlindTest extends AppCompatActivity {
         imageArr = setupTestImages();
         answerArr = new int[imageArr.length];
 
+        showPopup();
+
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +60,7 @@ public class ColorBlindTest extends AppCompatActivity {
                     if(count < imageArr.length)
                         nextImage();
                     else
-                        passResults(Arrays.toString(answerArr));
+                        passUserAnswers(answerArr);
                 }
             }
         });
@@ -68,14 +75,32 @@ public class ColorBlindTest extends AppCompatActivity {
 
                     nextImage();
                 }else
-                    passResults(Arrays.toString(answerArr));
+                    passUserAnswers(answerArr);
+            }
+        });
+
+    }
+
+    public void showPopup(){
+        popupInfo = new Dialog(this);
+        popupInfo.setContentView(R.layout.popup_test_instructions);
+        btnBeginTest = popupInfo.findViewById(R.id.btnBeginTest);
+        popupInfo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupInfo.setCanceledOnTouchOutside(false);
+        popupInfo.setCancelable(false);
+        popupInfo.show();
+
+        btnBeginTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupInfo.dismiss();
             }
         });
     }
 
-    public void passResults(String res){
+    public void passUserAnswers(int[] ans){
         Intent startIntent = new Intent(ColorBlindTest.this, Results.class);
-        startIntent.putExtra("RESULTS", res);
+        startIntent.putExtra("USER_ANSWERS", ans);
         startActivity(startIntent);
     }
 
@@ -88,10 +113,23 @@ public class ColorBlindTest extends AppCompatActivity {
     }
 
     public int[] setupTestImages(){
-        int[] images = new int[3];
-        images[0] = R.drawable.test1;
-        images[1] = R.drawable.test2;
-        images[2] = R.drawable.test3;
+        int[] images = new int[10];
+
+        images[0] = R.drawable.colorblindtest01;
+        images[1] = R.drawable.colorblindtest02;
+        images[2] = R.drawable.colorblindtest03;
+        images[3] = R.drawable.colorblindtest04;
+        images[4] = R.drawable.colorblindtest05;
+        images[5] = R.drawable.colorblindtest06;
+        images[6] = R.drawable.colorblindtest07;
+        images[7] = R.drawable.colorblindtest08;
+        images[8] = R.drawable.colorblindtest09;
+        images[9] = R.drawable.colorblindtest10;
+/*
+        Drawable res;
+        for(int i = 1; i < imageArr.length; i++)
+            res = getResources().getDrawable(getResources().getIdentifier("colorblindtest" + i + ".png", "drawable", getPackageName()))
+*/
         return images;
     }
 
