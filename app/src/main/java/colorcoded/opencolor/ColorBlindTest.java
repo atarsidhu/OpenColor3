@@ -13,8 +13,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Arrays;
-
 public class ColorBlindTest extends AppCompatActivity {
 
     ImageView test;

@@ -1,4 +1,4 @@
-package com.example.opencolor;
+package colorcoded.example.opencolor;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.opencolor.R;
 
 public class Results extends AppCompatActivity {
 

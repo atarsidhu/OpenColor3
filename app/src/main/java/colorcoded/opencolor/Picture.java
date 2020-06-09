@@ -1,4 +1,4 @@
-package com.example.opencolor;
+package colorcoded.example.opencolor;
 
 import android.Manifest;
 import android.app.Activity;
@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.example.opencolor.R;
 
 public class Picture extends AppCompatActivity {
 
