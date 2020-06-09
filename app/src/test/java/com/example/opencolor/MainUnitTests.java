@@ -22,7 +22,7 @@ public class MainUnitTests {
         //Testing there are three pictures loaded for the test
         ColorBlindTest test = new ColorBlindTest();
         int[] images = test.setupTestImages();
-        assertEquals(3, images.length);
+        assertEquals(10, images.length);
         assertEquals(images[0], R.drawable.colorblindtest01);
         assertEquals(images[1], R.drawable.colorblindtest02);
         assertEquals(images[2], R.drawable.colorblindtest03);
