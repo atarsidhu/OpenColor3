@@ -1,4 +1,4 @@
-package com.chaquo.python.hello;
+package colorcoded.chaquo.python.hello;
 
 import org.junit.Test;
 

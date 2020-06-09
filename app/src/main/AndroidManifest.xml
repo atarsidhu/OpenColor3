@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.opencolor">
+          package="colorcoded.opencolor">
     <!-- Only Android devices with a camera can download our app -->
     <uses-feature
             android:name="android.hardware.camera"
@@ -16,13 +16,13 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:name="com.chaquo.python.android.PyApplication">
-        <activity android:name=".Results">
+        <activity android:name="colorcoded.opencolor.Results">
         </activity>
-        <activity android:name=".Picture">
+        <activity android:name="colorcoded.opencolor.Picture">
         </activity>
-        <activity android:name=".ColorBlindTest">
+        <activity android:name="colorcoded.opencolor.ColorBlindTest">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="colorcoded.opencolor.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

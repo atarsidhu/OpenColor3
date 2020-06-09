@@ -1,4 +1,4 @@
-package com.chaquo.python.hello;
+package colorcoded.chaquo.python.hello;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;

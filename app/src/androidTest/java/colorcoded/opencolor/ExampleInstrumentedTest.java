@@ -1,4 +1,4 @@
-package colorcoded.example.opencolor;
+package colorcoded.opencolor;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under testicon.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.colorcoded.colorcoded.opencolor", appContext.getPackageName());
+        assertEquals("colorcoded.opencolor", appContext.getPackageName());
     }
 }

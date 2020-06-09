@@ -1,5 +1,7 @@
-package com.example.opencolor;
+package colorcoded.opencolor;
 
+
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -23,7 +25,7 @@ public class MainUnitTests {
         ColorBlindTest test = new ColorBlindTest();
         int[] images = test.setupTestImages();
         assertEquals(10, images.length);
-        assertEquals(images[0], R.drawable.colorblindtest01);
+        Assert.assertEquals(images[0], R.drawable.colorblindtest01);
         assertEquals(images[1], R.drawable.colorblindtest02);
         assertEquals(images[2], R.drawable.colorblindtest03);
     }

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "com.example.opencolor"
+        applicationId "com.example.colorcoded.colorcoded.opencolor"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
