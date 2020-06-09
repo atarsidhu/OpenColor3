@@ -1,4 +1,4 @@
-package colorcoded.example.opencolor;
+package colorcoded.opencolor;
 
 import android.content.Intent;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.opencolor.R;
+import colorcoded.opencolor.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
