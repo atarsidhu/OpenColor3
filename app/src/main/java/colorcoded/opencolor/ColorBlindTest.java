@@ -1,4 +1,4 @@
-package com.example.opencolor;
+package colorcoded.opencolor;
 
 import android.app.Dialog;
 import android.content.Intent;
