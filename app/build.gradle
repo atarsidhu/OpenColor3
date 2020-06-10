@@ -19,13 +19,13 @@ android {
             }
         }
         python{
-            buildPython "/users/local/bin/python"
-            buildPython "python"
+            buildPython "/users/local/bin/python3"
+            buildPython "python3"
 
             pip {
                 install "wand"
-                install "opencv-python"
-                install "numpy"
+                //install "opencv-python"
+                //install "numpy"
                 //install "-U matplotlib"
             }
         }
