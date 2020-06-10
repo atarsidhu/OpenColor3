@@ -18,10 +18,14 @@ android {
                 }
             }
         }
+
+        /*
         python{
             buildPython "/users/local/bin/python3"
             buildPython "python3"
         }
+        
+         */
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
