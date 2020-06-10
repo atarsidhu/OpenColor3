@@ -26,7 +26,7 @@ android {
             // Need to insert pip install for wand and any other python packages required
              python{
                  pip {
-                    install "wand"
+                    install "Wand"
                     //install "opencv-python"
                     //install "numpy"
                     //install "-U matplotlib"
