@@ -14,7 +14,7 @@ android {
         sourceSets{
             main{
                 python{
-                    srcDirs = ["src/main/python"]
+                    //srcDirs = ["src/main/python"]
                 }
             }
         }
