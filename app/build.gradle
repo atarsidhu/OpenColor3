@@ -11,23 +11,26 @@ android {
         versionName "1.0"
         //testInstrumentationRunner "androidx.testicon.runner.AndroidJUnitRunner"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        //sourceSets{
-            //main{
-               // python{
-                //    srcDirs = ["src/main/python"]
-                //}
-            //}
-        //}
+        sourceSets{
+            main{
+                python{
+                    srcDirs = ["src/main/python"]
+                }
+            }
+        }
         python{
-            //buildPython "/users/local/bin/python3"
-            //buildPython "python3"
+            buildPython "/users/local/bin/python3"
+            buildPython "python3"
 
+            /*
             pip {
                 install "wand"
                 install "opencv-python"
                 //install "numpy"
                 //install "-U matplotlib"
             }
+
+            */
         }
         ndk {
             abiFilters "armeabi-v7a", "x86"
