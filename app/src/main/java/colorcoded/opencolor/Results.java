@@ -2,44 +2,73 @@ package colorcoded.opencolor;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import colorcoded.opencolor.R;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Results extends AppCompatActivity {
 
-    TextView tvResults;
-    Button homeButton;
+    TextView tvStatement;
+    TextView tvScore;
     Button tryOwnImage;
-    ImageView sampleImage;
+    BottomNavigationView bottomNavigationView;
     int[] correctAnswerArr;
+    int[] testImages;
+    ArrayList<Integer> incorrectImageArr;
     int correct;
-    String resultText;
+
+    private ViewPager2 viewPager2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        tvResults = findViewById(R.id.tvResults);
-        homeButton = findViewById(R.id.btnHome);
+        tvStatement = findViewById(R.id.tvStatement);
+        tvScore = findViewById(R.id.tvScore);
         tryOwnImage = findViewById(R.id.btnTryOwnImage);
-        sampleImage = findViewById(R.id.imgSample);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.nav_test);
+        incorrectImageArr = new ArrayList<>();
+        testImages = new int[10];
+        viewPager2 = findViewById(R.id.viewPager);
+
         correctAnswerArr = correctAnswers();
-        resultText = "";
 
-        compareAnswers();
-
-        homeButton.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(startIntent);
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.nav_camera:
+                        startActivity(new Intent(getApplicationContext(), Picture.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.nav_test:
+                        startActivity(new Intent(getApplicationContext(), ColorBlindTest.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.nav_home:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    //library case
+                }
+                return false;
             }
         });
 
@@ -50,31 +79,64 @@ public class Results extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+
+        compareAnswers();
+        getScore();
+        presentIncorrectTestImage();
+    }
+
+    public void presentIncorrectTestImage(){
+        List<SliderItem> sliderItems = new ArrayList<>();
+
+        if(correct < 10){
+            //for (Integer i : incorrectImageArr) imgIncorrectTestImage.setImageResource(i);
+            for (int i = 0; i < incorrectImageArr.size(); i++)
+                sliderItems.add(new SliderItem(incorrectImageArr.get(i)));
+        }
+
+        viewPager2.setAdapter(new SliderAdapter(sliderItems, viewPager2));
+        viewPager2.setClipToPadding(false);
+        viewPager2.setClipChildren(false);
+        viewPager2.setOffscreenPageLimit(3);
+        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+
+
+        viewPager2.setPageTransformer(compositePageTransformer);
+
+        //for (int i = 0; i < incorrectImageArr.size(); i++)
+            //imgIncorrectTestImage.setImageResource(incorrectImageArr.get(i));
     }
 
     public void compareAnswers(){
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
+
+        int[] blah = bundle.getIntArray("ARRAY");
         int[] usr = bundle.getIntArray("USER_ANSWERS");
 
         for (int i = 0; i < correctAnswerArr.length; i++){
             assert usr != null;
             if(usr[i] == correctAnswerArr[i])
                 correct++;
+            else {
+                assert blah != null;
+                incorrectImageArr.add(blah[i]);
+            }
         }
+    }
 
-        // Modified version of Stanford's analysis of results for a simplified version of the test
+    public void getScore(){
+        tvScore.setText(getString(R.string.score, correct));
+
+        // Modified version of Stanford's "analysis of results" for a simplified version of the test
         // https://web.stanford.edu/group/vista/wikiupload/0/0a/Ishihara.14.Plate.Instructions.pdf
-        if(correct > 7){
-            resultText = "You scored: " + correct + "/10" +
-                    "\n\nBased on your answers, you do not have red-green color vision deficiency";
-            sampleImage.setImageResource(R.drawable.sample_color);
-        }
+        if(correct > 7)
+            tvStatement.setText(R.string.no_color_deficiency);
         else
-            resultText = "You scored: " + correct + "/10" +
-                    "\n\nBased on your answers, you may have some form of red-green color vision deficiency";
-
-        tvResults.setText(resultText);
+            tvStatement.setText(R.string.color_deficiency);
     }
 
     public int[] correctAnswers(){

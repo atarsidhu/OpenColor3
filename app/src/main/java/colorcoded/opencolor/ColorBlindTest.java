@@ -5,13 +5,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ColorBlindTest extends AppCompatActivity {
 
@@ -21,6 +24,7 @@ public class ColorBlindTest extends AppCompatActivity {
     Button btnNotSure;
     Button btnBeginTest;
     Dialog popupInfo;
+    BottomNavigationView bottomNavigationView;
 
     int[] answerArr;
     int[] imageArr;
@@ -40,6 +44,29 @@ public class ColorBlindTest extends AppCompatActivity {
         //Load test images in a Unit Testable way
         imageArr = setupTestImages();
         answerArr = new int[imageArr.length];
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.nav_test);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.nav_camera:
+                        startActivity(new Intent(getApplicationContext(), Picture.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.nav_test:
+                        return true;
+                    case R.id.nav_home:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    //library case
+                }
+                return false;
+            }
+        });
 
         showPopup();
 
@@ -97,8 +124,10 @@ public class ColorBlindTest extends AppCompatActivity {
     }
 
     public void passUserAnswers(int[] ans){
-        Intent startIntent = new Intent(ColorBlindTest.this, Results.class);
+        Intent startIntent = new Intent(this, Results.class);
         startIntent.putExtra("USER_ANSWERS", ans);
+        startIntent.putExtra("ARRAY", imageArr);
+
         startActivity(startIntent);
     }
 
@@ -123,6 +152,10 @@ public class ColorBlindTest extends AppCompatActivity {
         images[7] = R.drawable.colorblindtest08;
         images[8] = R.drawable.colorblindtest09;
         images[9] = R.drawable.colorblindtest10;
+
+        //Intent intent = new Intent(ColorBlindTest.this, Results.class);
+        //startIntent.putExtra("array", images);
+        //startActivity(intent);
 /*
         Drawable res;
         for(int i = 1; i < imageArr.length; i++)

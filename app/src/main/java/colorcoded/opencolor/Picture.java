@@ -8,15 +8,18 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import colorcoded.opencolor.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Picture extends AppCompatActivity {
 
@@ -24,6 +27,7 @@ public class Picture extends AppCompatActivity {
     ImageView choosePictureBtn;
     ImageView selectedImage;
     Button processImage;
+    BottomNavigationView bottomNavigationView;
     private static final int PICTURE_ID = 1;
     private static final int GALLERY_REQUEST_CODE = 2;
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 10;
@@ -41,7 +45,28 @@ public class Picture extends AppCompatActivity {
         associateResources();
         createListeners();
         setListeners();
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.nav_camera);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.nav_camera:
+                        return true;
+                    case R.id.nav_test:
+                        startActivity(new Intent(getApplicationContext(), ColorBlindTest.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.nav_home:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    //library case
+                }
+                return false;
+            }
+        });
 
     }
 

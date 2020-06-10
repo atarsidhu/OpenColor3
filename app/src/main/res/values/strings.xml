@@ -2,14 +2,19 @@
     <string name="app_name">OpenColor</string>
     <string name="title_desc">OpenColor Title Bar</string>
     <string name="author">By: ColorCoded</string>
+    <string name="library">Library</string>
+    <string name="camera">Camera</string>
+    <string name="test">Test</string>
 
+
+    <!-- Home Page -->
     <string name="choose_option_below">Choose an Option Below to Start</string>
     <string name="begin_test">Begin Test</string>
     <string name="choose">Choose An Image</string>
     <string name="or">Or</string>
 
     <!-- Picture Page -->
-    <string name="camera">Take A Picture</string>
+    <string name="take_picture">Take A Picture</string>
     <string name="select">Select An Existing Image</string>
 
     <!-- ColorBlindTest Page -->
@@ -27,4 +32,10 @@
     <string name="finish">Finish</string>
     <string name="home">Return Home</string>
     <string name="try_your_image">Try Your Own Image!</string>
+
+    <!-- Results Page -->
+    <string name="no_color_deficiency">Based on your answers, you do not have a red-green color vision deficiency.</string>
+    <string name="color_deficiency">Based on your answers, you may have some form of a red-green color vision deficiency.
+    \n\n You can find the images you were not able to identify below. Adjust the slider until you can identify each number.</string>
+    <string name="score">Your Score: %d/10</string>
 </resources>

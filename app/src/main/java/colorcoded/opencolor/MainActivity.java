@@ -1,27 +1,38 @@
 package colorcoded.opencolor;
 
 import android.content.Intent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import colorcoded.opencolor.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView startTestBtn;
-    ImageView openCameraBtn;
     ImageView grayscaleImg;
     ImageView colorImg;
     ImageView circleAdjustMid;
     ImageView circleAdjustTop;
     ImageView circleAdjustBot;
+    BottomNavigationView bottomNavigationView;
+
+    // TODO:
+    //  LIBRARY CLASS
+    //  FIX RESULTS PAGE
+    //  IMPLEMENT SAVE IMAGE BUTTON AND FUNCTION IN PICTURE CLASS AFTER LIBRARY CLASS COMPLETE
+    //  IF TEST ALREADY TAKEN AND USER SELECTS TEST BUTTON PRESENT RESULTS PAGE BUT ASK FOR REDO TEST?
+    //  HOME PAGE IS A LITTLE REDUNDANT. FIND A PURPOSE FOR IT OR REPLACE IT WITH SOMETHING ELSE
+    //  CUSTOM BUTTONS
+    //  TEST IMAGES THAT WERE INCORRECTLY GUESSED SHOULD BE PLACED ON RESULTS PAGE WITH ABILITY TO REFINE COLOURS SO USER CAN SEE THEM
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,22 +44,26 @@ public class MainActivity extends AppCompatActivity {
         circleAdjustMid = findViewById(R.id.imgBlackCircleMid);
         circleAdjustTop = findViewById(R.id.imgBlackCircleTop);
         circleAdjustBot = findViewById(R.id.imgBlackCircleBot);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.nav_home);
 
-        startTestBtn = findViewById(R.id.imgBtnTest);
-        startTestBtn.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), ColorBlindTest.class);
-                startActivity(startIntent);
-            }
-        });
-
-        openCameraBtn = findViewById(R.id.imgBtnCamera);
-        openCameraBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), Picture.class);
-                startActivity(startIntent);
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.nav_camera:
+                        startActivity(new Intent(getApplicationContext(), Picture.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.nav_test:
+                        startActivity(new Intent(getApplicationContext(), ColorBlindTest.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.nav_home:
+                        return true;
+                    //library case
+                }
+                return false;
             }
         });
 
