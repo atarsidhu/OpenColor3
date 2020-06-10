@@ -11,13 +11,13 @@ android {
         versionName "1.0"
         //testInstrumentationRunner "androidx.testicon.runner.AndroidJUnitRunner"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        sourceSets{
-            main{
-                python{
+        //sourceSets{
+            //main{
+                //python{
                     //srcDirs = ["src/main/python"]
-                }
-            }
-        }
+                //}
+            //}
+       // }
         python{
             buildPython "/users/local/bin/python3"
             buildPython "python3"
