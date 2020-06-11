@@ -21,6 +21,7 @@ before_script:
   - set +o pipefail
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
+  - apt-get install -y python
 
 stages:
   - build

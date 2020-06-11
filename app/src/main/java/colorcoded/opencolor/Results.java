@@ -116,7 +116,7 @@ public class Results extends AppCompatActivity {
     }
 
     /**
-     * @brief Compares the integers inside input against the integers inside correctList. The total amount of matching values (found in order) is returned, and a list of the incorrect comparisons are passed into incorrectlist
+     * Compares the integers inside input against the integers inside correctList. The total amount of matching values (found in order) is returned, and a list of the incorrect comparisons are passed into incorrectlist
      * @param input - The input list to be compared
      * @param imgRef - The image references of the test photos to be passed into incorrectList
      * @param correctList - The array to compare against
