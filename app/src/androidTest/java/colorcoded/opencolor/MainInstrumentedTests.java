@@ -1,8 +1,15 @@
 package colorcoded.opencolor;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
+import android.content.Context;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.SmallTest;
+import androidx.test.platform.app.InstrumentationRegistry;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumented testicon, which will execute on an Android device.
@@ -10,24 +17,13 @@ import org.junit.runner.RunWith;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
+@SmallTest
 public class MainInstrumentedTests {
-
-    /*
-
     @Test
     public void useAppContext() {
-        // Context of the app under testicon.
+        // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         assertEquals("colorcoded.opencolor", appContext.getPackageName());
     }
-
-    @Test
-    public void colorBlindTestLoads(){
-        //verify the color blind test is loading correctly
-        ColorBlindTest colorBlindActivityTest = new ColorBlindTest();
-        //Intent testContext = colorBlindActivityTest.getIntent();
-        //colorBlindActivityTest.startActivity(testContext);
-
-    }*/
 }

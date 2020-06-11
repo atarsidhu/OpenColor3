@@ -1,6 +1,8 @@
-package colorcoded.chaquo.python.hello;
+package colorcoded.pythonTest;
 
 import android.content.Context;
+
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -14,12 +16,13 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
+@SmallTest
 public class PythonInstrumentedTests {
     @Test
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.chaquo.python.hello", appContext.getPackageName());
+        assertEquals("colorcoded.opencolor", appContext.getPackageName());
     }
 }
