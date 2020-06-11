@@ -11,25 +11,25 @@ android {
         versionName "1.0"
         //testInstrumentationRunner "androidx.testicon.runner.AndroidJUnitRunner"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        /*
-       sourceSets{
+
+        sourceSets{
 
            main{
                python{
                    srcDirs = ["src/main/python"]
                }
            }
-       }
+        }
 
-            */
+
 
         python{
-            //buildPython "/users/local/bin/python3"
+            buildPython "/users/local/bin/python3"
             buildPython "python3"
             //buildPython "C:/Python3/python.exe"
             // Need to insert pip install for wand and any other python packages required
-             python{
-                 pip {
+            python{
+                pip {
                     install "Wand"
                 }
                  /*
