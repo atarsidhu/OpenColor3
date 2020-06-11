@@ -22,6 +22,9 @@ before_script:
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
   - apt-get install python3.5
+  - python --version
+  - pip install -r requirements.txt
+  - pip install Wand
 
 stages:
   - build
