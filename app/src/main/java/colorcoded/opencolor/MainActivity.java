@@ -26,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
     // TODO:
-    //  LIBRARY CLASS
-    //  FIX RESULTS PAGE
-    //  IMPLEMENT SAVE IMAGE BUTTON AND FUNCTION IN PICTURE CLASS AFTER LIBRARY CLASS COMPLETE
-    //  IF TEST ALREADY TAKEN AND USER SELECTS TEST BUTTON PRESENT RESULTS PAGE BUT ASK FOR REDO TEST?
+    //  SAVE IMAGE AND SEND TO LIBRARY
+    //  OPTIONAL: IF TEST ALREADY TAKEN AND USER SELECTS TEST BUTTON, PRESENT RESULTS PAGE BUT ASK FOR REDO TEST?
     //  HOME PAGE IS A LITTLE REDUNDANT. FIND A PURPOSE FOR IT OR REPLACE IT WITH SOMETHING ELSE
-    //  CUSTOM BUTTONS
-    //  TEST IMAGES THAT WERE INCORRECTLY GUESSED SHOULD BE PLACED ON RESULTS PAGE WITH ABILITY TO REFINE COLOURS SO USER CAN SEE THEM
+    //  OPTIONAL: CUSTOM BUTTONS
+    //  PYTHON: ADJUST THE INCORRECT IMAGES ON RESULTS PAGE
+    //  ISSUE: WHEN YOU FIRST OPEN THE APP AND SELECT 'TAKE A PICTURE', IT ASKS FOR THE USERS PERMISSION. AFTER TAPPING 'ALLOW', THE USER
+    //   IS REDIRECTED TO THE HOME SCREEN WHICH SHOULD NOT HAPPEN.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,10 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_home:
                         return true;
-                    //library case
+                    case R.id.nav_library:
+                        startActivity(new Intent(getApplicationContext(), PhotoLibrary.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }

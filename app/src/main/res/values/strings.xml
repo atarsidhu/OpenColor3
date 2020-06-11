@@ -16,16 +16,22 @@
     <!-- Picture Page -->
     <string name="take_picture">Take A Picture</string>
     <string name="select">Select An Existing Image</string>
+    <string name="process_image">Process Image</string>
+    <string name="save_image">Save Image</string>
 
     <!-- ColorBlindTest Page -->
     <string name="popup_title">Color Perception Test</string>
     <string name="popup_info">The following test is called the Ishihara Test. Its purpose is to detect a
         red-green color deficiency in the test taker. You will be presented 10 images in which you will have to
         correctly identify the number on the screen. If you cannot identify the number, select the \"Not Sure\" button
-        to skip the image. Please do not enter a random number as this may skew the results. When the test is complete, you will
-        be redirected to a page where the results will be presented. </string>
+        to skip the image. Please do not enter a random number as this may skew the results. When the test is complete,
+        you will
+        be redirected to a page where the results will be presented.
+    </string>
     <string name="disclaimer">DISCLAIMER: THIS TEST SHOULD ONLY BE USED TO ALERT THE TEST TAKER
-        OF A POSSIBLE COLOR VISION DEFICIENCY AND SHOULD NOT BE USED AS A MEANS TO MEDICALLY IDENTIFY A COLOR VISION DEFICIENCY. </string>
+        OF A POSSIBLE COLOR VISION DEFICIENCY AND SHOULD NOT BE USED AS A MEANS TO MEDICALLY IDENTIFY A COLOR VISION
+        DEFICIENCY.
+    </string>
     <string name="choose_number">What Number Do You See?</string>
     <string name="next">Next</string>
     <string name="not_sure">Not Sure</string>
@@ -34,8 +40,12 @@
     <string name="try_your_image">Try Your Own Image!</string>
 
     <!-- Results Page -->
-    <string name="no_color_deficiency">Based on your answers, you do not have a red-green color vision deficiency.</string>
-    <string name="color_deficiency">Based on your answers, you may have some form of a red-green color vision deficiency.
-    \n\n You can find the images you were not able to identify below. Adjust the slider until you can identify each number.</string>
+    <string name="no_color_deficiency">Based on your answers, you do not have a red-green color vision deficiency.
+    </string>
+    <string name="color_deficiency">Based on your answers, you may have some form of a red-green color vision
+        deficiency.
+        \n\n You can find the images you were not able to identify below. Adjust the slider until you can identify each
+        number.
+    </string>
     <string name="score">Your Score: %d/10</string>
 </resources>

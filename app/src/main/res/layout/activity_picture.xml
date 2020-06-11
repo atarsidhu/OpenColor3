@@ -7,6 +7,32 @@
         android:layout_height="match_parent"
         tools:context="colorcoded.opencolor.Picture" android:background="#FFFFFF">
 
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary"
+            android:id="@+id/view_toolbar"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            android:background="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imgToolbarIcon"
+            app:srcCompat="@drawable/opencolortransparentlogo"
+            android:layout_marginStart="7dp"
+            android:layout_marginLeft="7dp"
+            app:layout_constraintStart_toStartOf="@+id/toolbar" app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
             android:text="@string/or"
             android:layout_width="wrap_content"
@@ -14,22 +40,22 @@
             android:id="@+id/textView3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.5" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.78"/>
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@id/imgSelected"
+            app:layout_constraintVertical_bias="0.64"/>
 
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/camera"
             android:adjustViewBounds="true"
-            android:maxHeight="100dp"
-            android:maxWidth="100dp"
+            android:maxHeight="75dp"
+            android:maxWidth="75dp"
             android:id="@+id/imgBtnOpenCamera"
             android:contentDescription="@string/take_picture"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.8" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8"/>
+            app:layout_constraintHorizontal_bias="0.75" app:layout_constraintTop_toBottomOf="@id/imgSelected"
+            app:layout_constraintVertical_bias="0.65"/>
     <TextView
             android:text="@string/take_picture"
             android:layout_width="wrap_content"
@@ -37,20 +63,20 @@
             android:id="@+id/txtPicture" app:layout_constraintStart_toStartOf="@+id/imgBtnOpenCamera"
             app:layout_constraintEnd_toEndOf="@+id/imgBtnOpenCamera"
             app:layout_constraintTop_toBottomOf="@+id/imgBtnOpenCamera"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0100000"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0400000"
             android:textStyle="bold" android:textSize="12sp"/>
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@drawable/gallery"
             android:id="@+id/imgBtnGallery"
             android:adjustViewBounds="true"
-            android:maxHeight="100dp"
-            android:maxWidth="100dp"
+            android:maxHeight="75dp"
+            android:maxWidth="75dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.2"
-            android:contentDescription="@string/choose" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8"/>
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.25"
+            android:contentDescription="@string/choose" app:layout_constraintTop_toBottomOf="@id/imgSelected"
+            app:layout_constraintVertical_bias="0.65"/>
     <TextView
             android:text="@string/select"
             android:layout_width="wrap_content"
@@ -64,31 +90,20 @@
             android:layout_height="307dp" app:srcCompat="@drawable/imageplaceholder"
             android:id="@+id/imgSelected"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.100000024"/>
-    <TextView
-            android:text="some color adjusting tool stuff would be placed in this space"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/imgSelected"
-            app:layout_constraintBottom_toTopOf="@+id/imgBtnOpenCamera"/>
+            app:layout_constraintTop_toBottomOf="@id/toolbar" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.06999999"/>
 
     <Button
-        android:id="@+id/processImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="139dp"
-        android:layout_marginLeft="139dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginRight="140dp"
-        android:layout_marginBottom="19dp"
-        android:text="Process Image"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgSelected" />
+            android:id="@+id/processImage"
+            android:text="@string/process_image"
+            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/imgSelected"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintBottom_toTopOf="@+id/imgBtnGallery" app:layout_constraintVertical_bias="0.85"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -100,4 +115,14 @@
             android:background="#FFFFFF"
             app:labelVisibilityMode="labeled"
     />
+    <Button
+            android:text="@string/save_image"
+            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/btnSaveImage" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgSelected"
+            app:layout_constraintBottom_toTopOf="@+id/imgBtnGallery" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2" app:layout_constraintVertical_bias="0.85"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

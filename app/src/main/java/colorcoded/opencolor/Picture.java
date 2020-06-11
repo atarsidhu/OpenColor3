@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import colorcoded.opencolor.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Picture extends AppCompatActivity {
@@ -27,6 +26,7 @@ public class Picture extends AppCompatActivity {
     ImageView choosePictureBtn;
     ImageView selectedImage;
     Button processImage;
+    Button saveImage;
     BottomNavigationView bottomNavigationView;
     private static final int PICTURE_ID = 1;
     private static final int GALLERY_REQUEST_CODE = 2;
@@ -62,7 +62,10 @@ public class Picture extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    //library case
+                    case R.id.nav_library:
+                        startActivity(new Intent(getApplicationContext(), PhotoLibrary.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }
@@ -70,19 +73,19 @@ public class Picture extends AppCompatActivity {
 
     }
 
-    public boolean associateResources(){
+    public void associateResources(){
         selectedImage = findViewById(R.id.imgSelected);
         processImage = findViewById(R.id.processImage);
+        saveImage = findViewById(R.id.btnSaveImage);
         openCameraBtn = findViewById(R.id.imgBtnOpenCamera);
         choosePictureBtn = findViewById(R.id.imgBtnGallery);
-        return true;
     }
 
-    public boolean createListeners(){
+    public void createListeners(){
         processImageClicked = new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                selectedImage.setImageResource(R.drawable.imageplaceholder);
+                //selectedImage.setImageResource(R.drawable.imageplaceholder);
             }
         };
 
@@ -112,29 +115,46 @@ public class Picture extends AppCompatActivity {
             }
         };
 
-        return true;
     }
 
-    public boolean setListeners(){
+    public void setListeners(){
         processImage.setOnClickListener(processImageClicked);
         openCameraBtn.setOnClickListener(cameraClicked);
         choosePictureBtn.setOnClickListener(chooseClicked);
-        return true;
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         // Taking picture from camera
         if (requestCode == PICTURE_ID && resultCode == RESULT_OK && data != null) {
-            super.onActivityResult(requestCode, resultCode, data);
             Bitmap photo = (Bitmap) data.getExtras().get("data");
+            super.onActivityResult(requestCode, resultCode, data);
             selectedImage.setImageBitmap(photo);
         }
 
+        assert data != null;
+        final Uri photo = data.getData();
+
         // Selecting picture from gallery
-        if(requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null){
-            Uri photo = data.getData();
+        if(requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK){
             selectedImage.setImageURI(photo);
         }
+
+        saveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Send user taken/selected image to PhotoLibraryImageAdapter
+
+
+                Intent i = new Intent(getApplicationContext(), PhotoLibraryImageAdapter.class);
+                //Intent intent = new Intent(getApplicationContext(), PhotoLibraryImageAdapter.class);
+                i.putExtra("CHOSEN_IMAGE", photo);
+                startActivity(i);
+
+
+
+            }
+        });
     }
 
 

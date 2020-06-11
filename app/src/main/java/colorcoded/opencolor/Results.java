@@ -66,7 +66,10 @@ public class Results extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    //library case
+                    case R.id.nav_library:
+                        startActivity(new Intent(getApplicationContext(), PhotoLibrary.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }
@@ -88,11 +91,11 @@ public class Results extends AppCompatActivity {
     public void presentIncorrectTestImage(){
         List<SliderItem> sliderItems = new ArrayList<>();
 
-        if(correct < 10){
-            //for (Integer i : incorrectImageArr) imgIncorrectTestImage.setImageResource(i);
-            for (int i = 0; i < incorrectImageArr.size(); i++)
-                sliderItems.add(new SliderItem(incorrectImageArr.get(i)));
-        }
+        if(correct < 10)
+            for (Integer integer : incorrectImageArr) sliderItems.add(new SliderItem(integer));
+
+            //for (int i = 0; i < incorrectImageArr.size(); i++)
+        //sliderItems.add(new SliderItem(incorrectImageArr.get(i)));
 
         viewPager2.setAdapter(new SliderAdapter(sliderItems, viewPager2));
         viewPager2.setClipToPadding(false);
@@ -103,27 +106,23 @@ public class Results extends AppCompatActivity {
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
 
-
         viewPager2.setPageTransformer(compositePageTransformer);
-
-        //for (int i = 0; i < incorrectImageArr.size(); i++)
-            //imgIncorrectTestImage.setImageResource(incorrectImageArr.get(i));
     }
 
     public void compareAnswers(){
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
 
-        int[] blah = bundle.getIntArray("ARRAY");
-        int[] usr = bundle.getIntArray("USER_ANSWERS");
+        int[] wrongImage = bundle.getIntArray("ARRAY");
+        int[] userAnswers = bundle.getIntArray("USER_ANSWERS");
 
         for (int i = 0; i < correctAnswerArr.length; i++){
-            assert usr != null;
-            if(usr[i] == correctAnswerArr[i])
+            assert userAnswers != null;
+            if(userAnswers[i] == correctAnswerArr[i])
                 correct++;
             else {
-                assert blah != null;
-                incorrectImageArr.add(blah[i]);
+                assert wrongImage != null;
+                incorrectImageArr.add(wrongImage[i]);
             }
         }
     }

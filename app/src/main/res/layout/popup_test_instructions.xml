@@ -27,6 +27,7 @@
                 android:layout_gravity="center_horizontal"
                 android:textSize="25sp"
                 android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
                 android:text="@string/popup_title"/>
 
         <TextView
@@ -55,8 +56,10 @@
 
         <Button
                 android:id="@+id/btnBeginTest"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:background="@drawable/custom_button"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginBottom="15dp"
                 android:text="@string/begin_test">
 

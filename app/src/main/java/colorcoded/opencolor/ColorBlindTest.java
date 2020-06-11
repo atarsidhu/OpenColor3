@@ -62,7 +62,10 @@ public class ColorBlindTest extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    //library case
+                    case R.id.nav_library:
+                        startActivity(new Intent(getApplicationContext(), PhotoLibrary.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }
