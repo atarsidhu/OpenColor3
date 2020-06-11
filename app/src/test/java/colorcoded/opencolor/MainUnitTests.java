@@ -4,6 +4,8 @@ package colorcoded.opencolor;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -49,10 +51,32 @@ public class MainUnitTests {
         //setup variables for testing
         Results results = new Results();
         results.correctAnswerArr = results.correctAnswers();
+        results.incorrectImageArr = new ArrayList<>();
+        assertEquals(-1, results.compareAnswers(null, null, null, null));
+        int[] input = loadNormalList();
+        assertEquals(-1, results.compareAnswers(input, null, results.correctAnswerArr, results.incorrectImageArr));
+        int[] fakeImageRef = new int[10];
+        results.loadRandom(fakeImageRef, 10, 100);
+        assertEquals(10, results.compareAnswers(input, fakeImageRef, results.correctAnswerArr, results.incorrectImageArr));
+        results.loadRandom(input, 100, 200);
+        assertEquals(0, results.compareAnswers(input, fakeImageRef, results.correctAnswerArr, results.incorrectImageArr));
+        results.compareIntArrays(fakeImageRef, results.incorrectImageArr);
 
+    }
 
-
-
+    public int[] loadNormalList(){
+        int[] list = new int[10];
+        list[0] = 12;
+        list[1] = 8;
+        list[2] = 29;
+        list[3] = 5;
+        list[4] = 74;
+        list[5] = 45;
+        list[6] = 7;
+        list[7] = 16;
+        list[8] = 35;
+        list[9] = 96;
+        return list;
     }
 
 }
