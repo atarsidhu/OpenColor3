@@ -29,8 +29,8 @@ android {
             buildPython "python3"
             // Need to insert pip install for wand and any other python packages required
              python{
-                 pip {
-                    //install "Wand"
+                 pip3 {
+                    install "Wand"
                     //install "opencv-python"
                     //install "numpy"
                     //install "-U matplotlib"
