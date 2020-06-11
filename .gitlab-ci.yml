@@ -21,6 +21,9 @@ before_script:
   - set +o pipefail
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
+  - apt-get -y install pip
+  - export PATH=$PATH:/usr/lib/python3
+  - export PYTHONPATH=/usr/lib/python3
 
 stages:
   - build

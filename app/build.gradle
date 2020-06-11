@@ -23,10 +23,11 @@ android {
         
         python{
             buildPython "/users/local/bin/python3"
+            buildPython "/usr/lib/python3"
             buildPython "python3"
             // Need to insert pip install for wand and any other python packages required
             python{
-                /*
+
                pip {
                    install "Wand"
                }
@@ -40,7 +41,7 @@ android {
                     //install "-U matplotlib"
                 }
 
-                 */
+
             }
 
 
