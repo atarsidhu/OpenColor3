@@ -11,7 +11,8 @@ android {
         versionName "1.0"
         //testInstrumentationRunner "androidx.testicon.runner.AndroidJUnitRunner"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
         sourceSets{
 
            main{

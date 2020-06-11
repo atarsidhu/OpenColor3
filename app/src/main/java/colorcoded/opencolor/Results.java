@@ -116,12 +116,13 @@ public class Results extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param input
-     * @param imgRef
-     * @param correctList
-     * @param incorrectList
-     * @return
+     * Compares the integers inside input against the integers inside correctList. The total amount of matching values (found in order) is returned, and a list of the incorrect comparisons are passed into incorrectlist
+     * @param input - The input list to be compared
+     * @param imgRef - The image references of the test photos to be passed into incorrectList
+     * @param correctList - The array to compare against
+     * @param incorrectList - The list of images from imgRef that are incorrect, in correlation with incorrect matching of input.
+     * @return -1 if input or imgRef are null
+     * @return count - the amount of matches between input and correctList, considering that ordering is important
      */
     public int compareAnswers(int[] input, int[] imgRef, int[] correctList, ArrayList<Integer> incorrectList){
 
