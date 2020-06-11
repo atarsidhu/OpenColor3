@@ -1,9 +1,11 @@
 import cv2
 from wand.image import Image
+from java import *
+
 #from wand.display import display
 #import numpy as np
 #from matplotlib import pyplot as plt
-#cv2.__version__
+cv2.__version__
 
 """
 # This is showing some promise for the changing of the images by shifting the colors contained in them.
@@ -38,6 +40,17 @@ original_image=cv2.imread('Ishihara-Plate-05-38.jpg')
     bound, Can we do single image evaluation and what are the effects,
 
 '''
+def pullPixel(image, x, y):
+    return image[y,x,0]
+
+
+def py_print():
+    def __init__(self, name):
+        name="Chaquopy"
+        print(name)
+
+
+
 def shiftImage(filePathName, c1Shift, c1Value, c1Color,c2Shift, c2Value, c2Color):
         with Image(filename=filePathName) as img:
                 # B >> 1
@@ -62,16 +75,16 @@ def shiftImage(filePathName, c1Shift, c1Value, c1Color,c2Shift, c2Value, c2Color
 
 image = shiftImage('Ishihara-Plate-05-38.jpg',"rightshift",1.5,"green","rightshift",1,"red")
 
-fig=plt.figure()
-ax1 = fig.add_subplot(1,2,1)
-ax1.imshow(cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB))
-ax1.set_title('Original Image')
-ax2 = fig.add_subplot(1,2,2)
-ax2.imshow(image)
-ax2.set_title('Modified Image')
+#fig=plt.figure()
+#ax1 = fig.add_subplot(1,2,1)
+#ax1.imshow(cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB))
+#ax1.set_title('Original Image')
+#ax2 = fig.add_subplot(1,2,2)
+#ax2.imshow(image)
+#ax2.set_title('Modified Image')
 
 #plt.imshow(image)
-plt.show()
+#plt.show()
 
 
 

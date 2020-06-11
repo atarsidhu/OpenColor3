@@ -4,27 +4,56 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "com.example.colorcoded.colorcoded.opencolor"
-        minSdkVersion 16
+        applicationId "colorcoded.opencolor"
+        minSdkVersion 18
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.testicon.runner.AndroidJUnitRunner"
-        sourceSets {
-            main {
-                python {
-                    srcDirs = ["src/main/python"]
-                }
-            }
+        //testInstrumentationRunner "androidx.testicon.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
+        sourceSets{
+
+           main{
+               python{
+                   srcDirs = ["src/main/python"]
+               }
+           }
         }
-        python {
+        
+        python{
             buildPython "/users/local/bin/python3"
+            buildPython "/usr/lib/python3"
+            buildPython "C:/Program Files/Python38/python.exe"
+            buildPython "python.exe"
             buildPython "python3"
+            // Need to insert pip install for wand and any other python packages required
+            python{
+
+               pip {
+                   install "Wand"
+               }
+                pip{
+                    install "opencv-python"
+               }
+                pip{
+                    install "numpy"
+                }
+                pip{
+                    install "matplotlib"
+                }
+
+
+            }
+
+
         }
+
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
-        // Need to insert pip install for wand and any other python packages required
+
 
     }
     buildTypes {
@@ -49,4 +78,12 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    // Optional -- Hamcrest library
+    androidTestImplementation 'org.hamcrest:hamcrest-library:2.2'
+    // Optional -- UI testing with Espresso
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    // Optional -- UI testing with UI Automator
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 }

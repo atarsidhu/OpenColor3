@@ -10,16 +10,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Results extends AppCompatActivity {
 
@@ -83,7 +83,13 @@ public class Results extends AppCompatActivity {
             }
         });
 
-        compareAnswers();
+        //Compare answers
+        Bundle bundle = getIntent().getExtras();
+        assert bundle != null;
+        int[] blah = bundle.getIntArray("ARRAY");
+        int[] usr = bundle.getIntArray("USER_ANSWERS");
+
+        correct = compareAnswers(usr, blah, correctAnswerArr, incorrectImageArr);
         getScore();
         presentIncorrectTestImage();
     }
@@ -109,22 +115,39 @@ public class Results extends AppCompatActivity {
         viewPager2.setPageTransformer(compositePageTransformer);
     }
 
-    public void compareAnswers(){
-        Bundle bundle = getIntent().getExtras();
-        assert bundle != null;
+    /**
+     * Compares the integers inside input against the integers inside correctList. The total amount of matching values (found in order) is returned, and a list of the incorrect comparisons are passed into incorrectlist
+     * @param input - The input list to be compared
+     * @param imgRef - The image references of the test photos to be passed into incorrectList
+     * @param correctList - The array to compare against
+     * @param incorrectList - The list of images from imgRef that are incorrect, in correlation with incorrect matching of input.
+     * @return -1 if input or imgRef are null
+     * @return count - the amount of matches between input and correctList, considering that ordering is important
+     */
+    public int compareAnswers(int[] input, int[] imgRef, int[] correctList, ArrayList<Integer> incorrectList){
 
-        int[] wrongImage = bundle.getIntArray("ARRAY");
-        int[] userAnswers = bundle.getIntArray("USER_ANSWERS");
+        int count = 0;
 
-        for (int i = 0; i < correctAnswerArr.length; i++){
-            assert userAnswers != null;
-            if(userAnswers[i] == correctAnswerArr[i])
-                correct++;
+        //Input integrity check
+        if (input == null){
+            return -1;
+        }
+        if (imgRef == null){
+            return -1;
+        }
+
+        for (int i = 0; i < correctList.length; i++){
+
+            if(input[i] == correctList[i])
+
+                count++;
+
             else {
-                assert wrongImage != null;
-                incorrectImageArr.add(wrongImage[i]);
+
+                incorrectList.add(imgRef[i]);
             }
         }
+        return count;
     }
 
     public void getScore(){
@@ -152,4 +175,31 @@ public class Results extends AppCompatActivity {
         ans[9] = 96;
         return ans;
     }
+
+    public void loadRandom(int[] array, int min, int max){
+
+        final Random random = new Random();
+
+        for(int i = 0; i < array.length; i++){
+            array[i] = random.nextInt((max - min) + 1) + min;
+        }
+    }
+
+    public int compareIntArrays(int[] firstArray, ArrayList<Integer> secondArray){
+
+        int count = 0;
+
+        if (firstArray.length != secondArray.size()){
+            return -1;
+        }
+        for(int i = 0; i < firstArray.length; i++) {
+            for (int j = 0; j < secondArray.size(); j++) {
+                if (firstArray[i] == secondArray.indexOf(j)) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
 }

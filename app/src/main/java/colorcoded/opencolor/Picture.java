@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.chaquo.python.Python;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Picture extends AppCompatActivity {
@@ -81,11 +82,19 @@ public class Picture extends AppCompatActivity {
         choosePictureBtn = findViewById(R.id.imgBtnGallery);
     }
 
+    public String pythonText(String text){
+        Python py = Python.getInstance();
+        //PyObject py_test = py.getModule("ColorShift");
+        //return py_test.callAttr("py_print", "Chaquopy").toString();
+        return "String";
+    }
+
     public void createListeners(){
         processImageClicked = new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 //selectedImage.setImageResource(R.drawable.imageplaceholder);
+                processImage.setText(pythonText("Text"));
             }
         };
 
