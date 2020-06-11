@@ -19,7 +19,7 @@ public class MainUnitTests {
 
     //Testing the results of the color blind test
     @Test
-    public void testingResultsPage(){
+    public void testingTestPage(){
 
         //Testing there are three pictures loaded for the test
         ColorBlindTest test = new ColorBlindTest();
@@ -28,6 +28,9 @@ public class MainUnitTests {
         Assert.assertEquals(images[0], R.drawable.colorblindtest01);
         assertEquals(images[1], R.drawable.colorblindtest02);
         assertEquals(images[2], R.drawable.colorblindtest03);
+
+
+
     }
 
     //Testing the picture display page
@@ -37,6 +40,19 @@ public class MainUnitTests {
         //make sure all the resources load properly
         Picture test = new Picture();
         //assertEquals(1, test.associateResources());
+    }
+
+    //Testing the results are accurate against the documentation
+    @Test
+    public void testingResults(){
+
+        //setup variables for testing
+        Results results = new Results();
+        results.correctAnswerArr = results.correctAnswers();
+
+
+
+
     }
 
 }
