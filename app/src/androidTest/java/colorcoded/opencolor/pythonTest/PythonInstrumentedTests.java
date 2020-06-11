@@ -1,4 +1,4 @@
-package colorcoded.chaquo.python.hello;
+package colorcoded.opencolor.pythonTest;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -20,6 +20,6 @@ public class PythonInstrumentedTests {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.chaquo.python.hello", appContext.getPackageName());
+        assertEquals("colorcoded.opencolor.pythonTest", appContext.getPackageName());
     }
 }
