@@ -1,5 +1,7 @@
 import cv2
 from wand.image import Image
+from java import *
+
 #from wand.display import display
 #import numpy as np
 #from matplotlib import pyplot as plt
@@ -38,6 +40,17 @@ original_image=cv2.imread('Ishihara-Plate-05-38.jpg')
     bound, Can we do single image evaluation and what are the effects,
 
 '''
+def pullPixel(image, x, y):
+    return image[y,x,0]
+
+
+def py_print():
+    def __init__(self, name):
+        name="Chaquopy"
+        print(name)
+
+
+
 def shiftImage(filePathName, c1Shift, c1Value, c1Color,c2Shift, c2Value, c2Color):
         with Image(filename=filePathName) as img:
                 # B >> 1

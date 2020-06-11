@@ -25,6 +25,8 @@ android {
         python{
             buildPython "/users/local/bin/python3"
             buildPython "/usr/lib/python3"
+            buildPython "C:/Program Files/Python38/python.exe"
+            buildPython "python.exe"
             buildPython "python3"
             // Need to insert pip install for wand and any other python packages required
             python{
@@ -33,13 +35,13 @@ android {
                    install "Wand"
                }
                 pip{
-                    //install "opencv-python"
+                    install "opencv-python"
                }
                 pip{
-                    //install "numpy"
+                    install "numpy"
                 }
                 pip{
-                    //install "-U matplotlib"
+                    install "matplotlib"
                 }
 
 
