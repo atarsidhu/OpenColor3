@@ -48,4 +48,5 @@
         number.
     </string>
     <string name="score">Your Score: %d/10</string>
+    <string name="testing">..:: Histogram Equalization ::..</string>
 </resources>

@@ -4,6 +4,8 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
         applicationId "colorcoded.opencolor"
         minSdkVersion 18
         targetSdkVersion 29

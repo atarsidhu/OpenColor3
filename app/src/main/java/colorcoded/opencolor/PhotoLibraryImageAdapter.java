@@ -1,9 +1,6 @@
 package colorcoded.opencolor;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,6 +10,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 public class PhotoLibraryImageAdapter extends BaseAdapter {
+
 
     private Context mContext;
     public int[] imageArr = {R.drawable.colorblindtest01, R.drawable.colorblindtest02, R.drawable.colorblindtest02
