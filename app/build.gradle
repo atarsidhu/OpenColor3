@@ -30,7 +30,7 @@ android {
             buildPython "C:/Program Files/Python38/python.exe"
             buildPython "python.exe"
             buildPython "python3"
-            buildPython "C:/Users/asidh/IdeaProjects/opencolor/venv/Scripts/python.exe"
+            //buildPython "C:/Users/asidh/IdeaProjects/opencolor/venv/Scripts/python.exe"
             // Need to insert pip install for wand and any other python packages required
             python{
 

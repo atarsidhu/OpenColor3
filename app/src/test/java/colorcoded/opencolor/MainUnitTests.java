@@ -31,8 +31,6 @@ public class MainUnitTests {
         assertEquals(images[1], R.drawable.colorblindtest02);
         assertEquals(images[2], R.drawable.colorblindtest03);
 
-
-
     }
 
     //Testing the results are accurate against the documentation
