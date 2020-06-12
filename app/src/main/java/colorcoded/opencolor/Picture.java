@@ -147,30 +147,24 @@ public class Picture extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void modifyImage(ImageView image){
 
-        PyObject py_colorshift = py.getModule("colorshift");
-        PyObject py_test = py.getModule("test");
-
         Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
-
-        savePythonImage(bitmap, "testImage");
-
-        byte[] byteArray = convertBitmapToByteArray(bitmap);
-        PyObject array1 = PyObject.fromJava(byteArray);
-
-        byte[] result = py_test.callAttr("pic_func", array1).toJava(byte[].class);
-
-        Bitmap newBitmap = convertByteArrayToBitmap(result);
-        newBitmap = doColorFilter(newBitmap, 0.9, 1.1, 1.1);
-
-
-
-        //PyObject py_shiftImage = py_colorshift.callAttr("shiftImage", "testImage.png", "leftshift", 2, "red", "leftshift", 2, "red");
-
-        //bitmap = loadPythonImage("testImage.png");
-
+        Bitmap newBitmap = doColorFilter(bitmap, 0.9, 1.1, 1.1);
         image.setImageBitmap(newBitmap);
 
-        //return py_shiftImage.toJava(ImageView.class);
+        /*
+        PyObject py_colorshift = py.getModule("ColorShift");
+        PyObject py_test = py.getModule("test");
+        savePythonImage(bitmap, "testImage");
+        byte[] byteArray = convertBitmapToByteArray(bitmap);
+        PyObject array1 = PyObject.fromJava(byteArray);
+        byte[] result = py_test.callAttr("pic_func", array1).toJava(byte[].class);
+        Bitmap newBitmap = convertByteArrayToBitmap(result);
+        PyObject py_shiftImage = py_colorshift.callAttr("shiftImage", "testImage.png", "leftshift", 2, "red", "leftshift", 2, "red");
+        bitmap = loadPythonImage("testImage.png");
+        */
+
+
+
 
     }
 
