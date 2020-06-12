@@ -1,5 +1,6 @@
-from wand.image import Image
 
+#from java import *
+#from wand.image import Image
 '''
 #@param filePathName, c1Shift, c1Value, c1Color, c2Shift, c2Value, c2Color
 # The filePathName - just like it indicates requires the filename and path
@@ -17,7 +18,7 @@ def shiftImage(filePathName, c1Shift, c1Value, c1Color,c2Shift, c2Value, c2Color
         img.evaluate(operator=c1Shift, value=c1Value, channel=c1Color)
         img.evaluate(operator=c2Shift, value=c2Value, channel=c2Color)
         img.format='png'
-        #img.save(filename='plate6.png')
+        img.save(filename='modified.png')
         #display(img)
         return Image(img)
 

@@ -94,16 +94,17 @@
             app:layout_constraintVertical_bias="0.06999999"/>
 
     <Button
-            android:id="@+id/processImage"
-            android:text="@string/process_image"
-            android:layout_height="wrap_content"
-            android:layout_width="120dp"
-            android:background="@drawable/custom_button"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintTop_toBottomOf="@+id/imgSelected"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.8"
-            app:layout_constraintBottom_toTopOf="@+id/imgBtnGallery" app:layout_constraintVertical_bias="0.85"/>
+        android:id="@+id/processImage"
+        android:layout_width="199dp"
+        android:layout_height="75dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/process_image"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/imgBtnGallery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSelected"
+        app:layout_constraintVertical_bias="0.509" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -115,14 +116,4 @@
             android:background="#FFFFFF"
             app:labelVisibilityMode="labeled"
     />
-    <Button
-            android:text="@string/save_image"
-            android:layout_height="wrap_content"
-            android:layout_width="120dp"
-            android:background="@drawable/custom_button"
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/btnSaveImage" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgSelected"
-            app:layout_constraintBottom_toTopOf="@+id/imgBtnGallery" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2" app:layout_constraintVertical_bias="0.85"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

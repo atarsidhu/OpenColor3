@@ -35,15 +35,6 @@ public class MainUnitTests {
 
     }
 
-    //Testing the picture display page
-    @Test
-    public void testingPicturePage(){
-
-        //make sure all the resources load properly
-        Picture test = new Picture();
-        //assertEquals(1, test.associateResources());
-    }
-
     //Testing the results are accurate against the documentation
     @Test
     public void testingResults(){
