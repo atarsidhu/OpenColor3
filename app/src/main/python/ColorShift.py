@@ -13,6 +13,9 @@
     bound, Can we do single image evaluation and what are the effects,
     
 '''
+from android.media import Image
+
+
 def shiftImage(filePathName, c1Shift, c1Value, c1Color,c2Shift, c2Value, c2Color):
     with Image(filename=filePathName) as img:
         img.evaluate(operator=c1Shift, value=c1Value, channel=c1Color)

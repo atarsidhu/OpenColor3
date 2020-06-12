@@ -155,7 +155,7 @@ public class Picture extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void modifyImage(ImageView image){
 
-        PyObject py_colorshift = py.getModule("colorshift");
+        PyObject py_colorshift = py.getModule("ColorShift");
         PyObject py_test = py.getModule("test");
 
         Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
@@ -231,8 +231,8 @@ public class Picture extends AppCompatActivity {
                     if (ContextCompat.checkSelfPermission(pictureActivity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                         processImage.setText(pythonText("Process Image"));
                         startActivityForResult(startIntent, PICTURE_ID);
-                        //startActivityForResult(startIntent, PICTURE_ID);
 
+                        /*
                         // Create the File where the photo should go
                         File photoFile = null;
                         try {
@@ -248,6 +248,8 @@ public class Picture extends AppCompatActivity {
                             startIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                             startActivityForResult(startIntent, PICTURE_ID);
                         }
+
+                         */
 
                     }
                     else{
@@ -268,6 +270,22 @@ public class Picture extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(startIntent, "Pick an image"), GALLERY_REQUEST_CODE);
             }
         };
+
+        saveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ImageView yourImageView = selectedImage;
+                yourImageView.setDrawingCacheEnabled(true);
+                Bitmap bitmap = Bitmap.createBitmap(yourImageView.getDrawingCache());
+                yourImageView.setDrawingCacheEnabled(false);
+
+                // Save photo taken from camera
+                MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Title" , "yourDescription");
+                //galleryAddPic();
+
+            }
+        });
 
     }
 
@@ -304,44 +322,21 @@ public class Picture extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //final PhotoLibraryImageAdapter photoLibraryImageAdapter = new PhotoLibraryImageAdapter(this);
 
         // Taking picture from camera
-        final Bitmap photoFromCamera = (Bitmap) data.getExtras().get("data");
-
-        if (requestCode == PICTURE_ID && resultCode == RESULT_OK) {
+        if (requestCode == PICTURE_ID && resultCode == RESULT_OK && data != null) {
+            final Bitmap photoFromCamera = (Bitmap) data.getExtras().get("data");
             super.onActivityResult(requestCode, resultCode, data);
             selectedImage.setImageBitmap(photoFromCamera);
-            //photoLibraryImageAdapter.chosenImageArr.add(photo);
         }
-
-        //final Bitmap photo2 = (Bitmap) data.getExtras().get("data");
-
 
         // Selecting picture from gallery
-        final Uri photo = data.getData();
+        assert data != null;
 
         if(requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK){
-            selectedImage.setImageURI(photo);
+            final Uri photoFromGallery = data.getData();
+            selectedImage.setImageURI(photoFromGallery);
         }
 
-        saveImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Send user taken/selected image to PhotoLibraryImageAdapter
-
-                //photoLibraryImageAdapter.chosenImageArr.add(photo2);
-                //photoLibraryImageAdapter.chosenImageArr.add(photo);
-
-                //Intent i = new Intent(getApplicationContext(), PhotoLibraryImageAdapter.class);
-                //Intent intent = new Intent(getApplicationContext(), PhotoLibraryImageAdapter.class);
-                //i.putExtra("CHOSEN_IMAGE", photo);
-                //startActivity(i);
-
-                // Save photo taken from camera
-                MediaStore.Images.Media.insertImage(getContentResolver(), photoFromCamera, "Title" , "yourDescription");
-                galleryAddPic();
-            }
-        });
     }
 }
