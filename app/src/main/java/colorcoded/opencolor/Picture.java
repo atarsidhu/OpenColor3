@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,8 +19,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import androidx.core.content.FileProvider;
 import com.chaquo.python.Python;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Picture extends AppCompatActivity {
 
@@ -104,7 +112,24 @@ public class Picture extends AppCompatActivity {
                 Intent startIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (startIntent.resolveActivity(getPackageManager()) != null) {
                     if (ContextCompat.checkSelfPermission(pictureActivity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        startActivityForResult(startIntent, PICTURE_ID);
+                        //startActivityForResult(startIntent, PICTURE_ID);
+
+                        // Create the File where the photo should go
+                        File photoFile = null;
+                        try {
+                            photoFile = createImageFile();
+                        } catch (IOException ex) {
+                            // Error occurred while creating the File
+                        }
+                        // Continue only if the File was successfully created
+                        if (photoFile != null) {
+                            Uri photoURI = FileProvider.getUriForFile(getApplicationContext(),
+                                    "com.example.android.fileprovider",
+                                    photoFile);
+                            startIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                            startActivityForResult(startIntent, PICTURE_ID);
+                        }
+
                     }
                     else{
                         ActivityCompat.requestPermissions(pictureActivity, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
@@ -132,19 +157,50 @@ public class Picture extends AppCompatActivity {
         choosePictureBtn.setOnClickListener(chooseClicked);
     }
 
+    String currentPhotoPath;
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(currentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //final PhotoLibraryImageAdapter photoLibraryImageAdapter = new PhotoLibraryImageAdapter(this);
 
         // Taking picture from camera
-        if (requestCode == PICTURE_ID && resultCode == RESULT_OK && data != null) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
+        final Bitmap photoFromCamera = (Bitmap) data.getExtras().get("data");
+
+        if (requestCode == PICTURE_ID && resultCode == RESULT_OK) {
             super.onActivityResult(requestCode, resultCode, data);
-            selectedImage.setImageBitmap(photo);
+            selectedImage.setImageBitmap(photoFromCamera);
+            //photoLibraryImageAdapter.chosenImageArr.add(photo);
         }
 
-        assert data != null;
-        final Uri photo = data.getData();
+        //final Bitmap photo2 = (Bitmap) data.getExtras().get("data");
+
 
         // Selecting picture from gallery
+        final Uri photo = data.getData();
+
         if(requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK){
             selectedImage.setImageURI(photo);
         }
@@ -154,17 +210,18 @@ public class Picture extends AppCompatActivity {
             public void onClick(View v) {
                 //Send user taken/selected image to PhotoLibraryImageAdapter
 
+                //photoLibraryImageAdapter.chosenImageArr.add(photo2);
+                //photoLibraryImageAdapter.chosenImageArr.add(photo);
 
-                Intent i = new Intent(getApplicationContext(), PhotoLibraryImageAdapter.class);
+                //Intent i = new Intent(getApplicationContext(), PhotoLibraryImageAdapter.class);
                 //Intent intent = new Intent(getApplicationContext(), PhotoLibraryImageAdapter.class);
-                i.putExtra("CHOSEN_IMAGE", photo);
-                startActivity(i);
+                //i.putExtra("CHOSEN_IMAGE", photo);
+                //startActivity(i);
 
-
-
+                // Save photo taken from camera
+                MediaStore.Images.Media.insertImage(getContentResolver(), photoFromCamera, "Title" , "yourDescription");
+                galleryAddPic();
             }
         });
     }
-
-
 }

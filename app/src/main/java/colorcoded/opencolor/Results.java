@@ -15,6 +15,8 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -147,6 +149,21 @@ public class Results extends AppCompatActivity {
                 incorrectList.add(imgRef[i]);
             }
         }
+        /* Potential conflict that I didnt merge. Keeping it here until I know the function still works.
+        int[] wrongImage = bundle.getIntArray("ARRAY");
+        int[] userAnswers = bundle.getIntArray("USER_ANSWERS");
+
+        for (int i = 0; i < correctAnswerArr.length; i++){
+            assert userAnswers != null;
+            if(userAnswers[i] == correctAnswerArr[i])
+                correct++;
+            else {
+                assert wrongImage != null;
+                incorrectImageArr.add(wrongImage[i]);
+            }
+        }
+
+         */
         return count;
     }
 

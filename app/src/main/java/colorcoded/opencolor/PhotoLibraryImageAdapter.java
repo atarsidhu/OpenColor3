@@ -3,6 +3,8 @@ package colorcoded.opencolor;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,9 @@ public class PhotoLibraryImageAdapter extends BaseAdapter {
             , R.drawable.colorblindtest02, R.drawable.colorblindtest02, R.drawable.colorblindtest02
             , R.drawable.colorblindtest02, R.drawable.colorblindtest02};
 
-    ArrayList<Integer> chosenImageArr = new ArrayList<>();
+    ArrayList<Uri> chosenImageArr = new ArrayList<>();
+
+    public PhotoLibraryImageAdapter(){};
 
     public PhotoLibraryImageAdapter(Context mContext) {
         this.mContext = mContext;
@@ -29,12 +33,12 @@ public class PhotoLibraryImageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return imageArr.length;
+        return chosenImageArr.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return imageArr[position];
+        return chosenImageArr.get(position);
     }
 
     @Override
@@ -44,9 +48,11 @@ public class PhotoLibraryImageAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Picture picture = new Picture();
 
         ImageView imageView = new ImageView(mContext);
-        imageView.setImageResource(imageArr[position]);
+        //imageView.setImageResource(imageArr[position]);
+        imageView.setImageURI(chosenImageArr.get(position));
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setLayoutParams(new GridView.LayoutParams(350,350));
 
